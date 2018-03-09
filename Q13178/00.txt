@@ -1,0 +1,49 @@
+int main(){
+  int caseTotal;
+  while( scanf("%d", &caseTotal) != EOF ){
+    for( int caseNumber = 0 ; caseNumber < caseTotal ; ++caseNumber ){
+      int N;
+      scanf("%d", &N);
+
+      for( int i = 0 ; i <= 9 ; ++i ){
+        int value = N;
+        int digit = 1; //计run近瞷Ω计 1Ω 10Ω (ex 1 10~19)
+        int lastDigit = 0;//计
+        int number = 0; //计0~9 计
+        while( value > 0 ){
+          if( i == 0 ){
+            if( value % 10 == i ){
+              number += (value / 10 - 1) * digit + lastDigit + 1; //俱埃+1
+            }
+            else{
+              number += value / 10 * digit;
+            }
+          } 
+          else{
+            if( value % 10 < i ){
+              number += value / 10 * digit; //㎝lastdigit礚闽 ex 33 癘4瞷Ω计 
+            }
+            else if( value % 10 == i ){
+              number += value / 10 * digit + lastDigit + 1;// +1 眖0秨﹍ lastDigit眖10秨﹍暗ノex 1234 近 123 Τ0~4
+            }
+            else {
+              number += (value / 10 + 1) * digit;// +1 眖0秨﹍
+            }
+          }
+
+          lastDigit += value % 10 * digit;
+          digit *= 10;
+          value /= 10;
+        }
+
+        if( i > 0 ){
+          printf(" ");
+        }
+        printf("%d", number);
+      }
+      printf("\n");
+    }
+  }
+
+  return 0;
+}
